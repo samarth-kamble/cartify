@@ -27,8 +27,9 @@ app.use(
   createProxyMiddleware({
     target: config.services.auth,
     changeOrigin: true,
-    pathRewrite: { "^/api/auth": "" },
-  })
+    cookieDomainRewrite: "localhost",
+    pathRewrite: (path) => `/api/auth${path}`,
+  }),
 );
 
 
